@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INST377 - Lab 4 JavaScript</title>
+    <style>
+        body {
+            background-color: rgb(121, 115, 172);
+        }
+
+        .row-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .containers{
+            padding: 30px;
+            margin: 10px;
+            background-color: blue;
+            border: solid white;
+            border-radius: 15px;
+            color: white;
+            width: 38%;
+            height: 10px;
+            text-align: center;
+            box-shadow: inset;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="pageHeading">INST377 - Lab 4</h1>
+    
+    <div class="row-container">  
+
+        <div class="containers">
+            <form id="alertForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required />
+                <input type="submit" value="Alert Me!">
+            </form>
+        </div>
+
+        <div class="containers">
+            <button type="button" id="colorButton">Change Color</button>
+        </div>
+
+    </div> 
+
+    <div class="row-container">
+
+        <div class="containers">
+            <form id="textTesterForm">
+                <label for="name">UserName:</label>
+                <input type="text" id="tester" name="tester" required />
+                <input type="submit" value="Validate UserName">
+            </form>
+        </div>
+
+        <div class="containers">
+            <button type="button" id="addTextButton">Add Text</button>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript function for alerting the name
+        document.getElementById('alertForm').addEventListener('submit', function(event){
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            alert(`Hi ${name}!`);
+
+        })
+
+        // JavaScript function for changing the background color
+        const colorButton = document.getElementById('colorButton');
+        colorButton.addEventListener('click', function() {
+            const body = document.body
+            if (body.style.backgroundColor === 'rgb(115, 172, 153)'){
+                body.style.backgroundColor = 'rgb(121, 115, 172)';
+            } else {
+                body.style.backgroundColor = 'rgb(115, 172, 153)';
+            }
+        });
+
+        // JavaScript function for validating special characters
+        document.getElementById('textTesterForm').addEventListener('submit', function(event){
+            event.preventDefault();
+
+            const text = document.getElementById('tester').value;
+            const validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+            if (validation.test(text)) {
+                alert("Special characters are not allowed in UserName!");
+            } else {
+                alert("UserName accepted!");
+            }
+        });
+
+        // JavaScript function to add text to the heading
+        const addTextButton = document.getElementById('addTextButton');
+        addTextButton.addEventListener('click', function() {
+            const heading = document.getElementById('pageHeading');
+            heading.textContent += ' Add Text'; 
+        });
+
+    </script>
+</body>
+</html>
